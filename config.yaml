@@ -1,0 +1,3 @@
+lr: 'orion~loguniform(1e-5, 1.0)'
+model:
+  activation: "orion~choices(['sigmoid', 'relu'])"
