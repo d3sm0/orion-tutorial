@@ -1,0 +1,4 @@
+database:
+   type: 'mongodb'
+   name: 'orion_test'
+   host: 'mongodb://orion:pass@95.217.133.223'
