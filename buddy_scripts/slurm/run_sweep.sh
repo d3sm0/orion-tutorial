@@ -1,5 +1,5 @@
 #! /bin/bash
-#SBATCH --job-name=spython
+#SBATCH --job-name=orion
 #SBATCH --output=job_output.txt
 #SBATCH --error=job_error.txt
 #SBATCH --time=2-00:00
