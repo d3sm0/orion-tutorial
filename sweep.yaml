@@ -1,0 +1,3 @@
+program: "mnist.py"
+backend: "orion"
+lr: 'orion~loguniform(1e-5, 1.0)'
