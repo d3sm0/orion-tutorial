@@ -1,0 +1,3 @@
+-e git+https://github.com/ministry-of-silly-code/experiment_buddy#egg=experiment_buddy
+torch==1.11.0+cu113
+orion
