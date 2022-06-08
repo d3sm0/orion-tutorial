@@ -3,10 +3,12 @@ from __future__ import print_function
 import argparse
 import json
 
+import ipdb
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
+import yaml
 from torch.optim.lr_scheduler import StepLR
 from torchvision import datasets, transforms
 
@@ -111,12 +113,13 @@ def main():
     if len(remaining):
         orion_params = remaining[0]
         with open(orion_params, 'r') as f:
-            orion_params = json.load(f)
+            orion_params = yaml.safe_load(f)
+        print(orion_params)
         print(args.lr)
         args.__dict__.update(orion_params)
     print(args.lr)
     experiment_buddy.register_defaults(dict(args.__dict__))
-    experiment_buddy.deploy(host="mila", sweep_definition="sweep.json")
+    writer = experiment_buddy.deploy(host="mila", sweep_definition="sweep.yaml")
 
     print(f"args: {args.lr}")
     use_cuda = not args.no_cuda and torch.cuda.is_available()
@@ -151,12 +154,10 @@ def main():
     for epoch in range(1, args.epochs + 1):
         # train(args, model, device, train_loader, optimizer, epoch)
         outcome = validate(model, device, test_loader)
+        writer.add_scalar("test_accuracy", outcome, epoch)
         report_objective(outcome)
         break
         scheduler.step()
-
-    if args.save_model:
-        torch.save(model.state_dict(), "mnist_cnn.pt")
 
 
 if __name__ == '__main__':
