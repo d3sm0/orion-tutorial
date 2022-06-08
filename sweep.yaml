@@ -1,0 +1,6 @@
+program: "mnist.py"
+backend: "orion"
+lr: 'orion~loguniform(1e-5, 1.0)'
+model:
+  activation: "orion~choices(['sigmoid', 'relu'])"
+  hiddens: 'orion~randint(100, 1000)'
