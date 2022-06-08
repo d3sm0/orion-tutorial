@@ -34,7 +34,7 @@ log "downloading source code from $GIT_URL to $FOLDER"
 # https://stackoverflow.com/questions/7772190/passing-ssh-options-to-git-clone/28527476#28527476
 GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git clone $GIT_URL $FOLDER/
 cd $FOLDER || exit
-git checkout $HASH_COMMIT
+git checkout "$HASH_COMMIT"
 log "pwd is now $(pwd)"
 
 # Set up virtualenv in $SLURM_TMPDIR. Will get blown up at job end.
@@ -51,4 +51,6 @@ python3 -m pip install --upgrade -r "requirements.txt" --exists-action w -f http
 export XLA_FLAGS=--xla_gpu_cuda_data_dir=/cvmfs/ai.mila.quebec/apps/x86_64/common/cuda/10.1/
 # TODO: the client should send the experiment_buddy version to avoid issues
 
-orion hunt -d -n parallel-exp --worker-trials 1 "$ENTRYPOINT" --config sweep.json
+export ORION_DB_ADDRESS=$HOME/scratch/orion_db.pkl
+export ORION_DB_TYPE=PickledDB
+orion hunt --config orion.yaml -n "$HASH_COMMIT" --worker-trials 1 python "$ENTRYPOINT" --config sweep.yaml
