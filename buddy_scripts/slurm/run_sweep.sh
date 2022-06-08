@@ -51,4 +51,6 @@ python3 -m pip install --upgrade -r "requirements.txt" --exists-action w -f http
 export XLA_FLAGS=--xla_gpu_cuda_data_dir=/cvmfs/ai.mila.quebec/apps/x86_64/common/cuda/10.1/
 # TODO: the client should send the experiment_buddy version to avoid issues
 
-orion hunt -d -n parallel-exp --worker-trials 1 "$ENTRYPOINT" --config sweep.json
+export ORION_DB_ADDRESS=$HOME/scratch/orion_db.pkl
+export ORION_DB_TYPE=PickledDB
+orion hunt -n $HASH_COMMIT --worker-trials 1 "$ENTRYPOINT" --config sweep.json
