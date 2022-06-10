@@ -1,0 +1,8 @@
+storage:
+  database:
+    type: 'ephemeraldb'
+algorithms:
+  hyperband:
+    seed: 1
+    repetitions: 10
+working_dir: "./tmp"

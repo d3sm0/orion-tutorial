@@ -4,5 +4,7 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="Python 3.10 (ts_env)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="orion" />
+    <orderEntry type="module" module-name="experiment_buddy" />
   </component>
 </module>
