@@ -38,7 +38,7 @@ def agent(train_id, wandb_path):
             pass
         os.makedirs(report_path, exist_ok=True)
         args += " ".join([f"--{k}={v}" for k, v in trial.params.items()])
-        cmd = f"python orion_example.py --report_path {report_path} {args}"
+        cmd = f"python main.py --report_path {report_path} {args}"
         process = sp.run(cmd, shell=True)
         print(process.returncode)
         with open(os.path.join(report_path, "outcome.json"), "r") as f:
