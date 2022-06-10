@@ -1,1 +1,2 @@
-lr: 'fidelity(1,4, 2.3)'
+# lr: 'fidelity(1,4, 2.3)'
+lr: 'uniform(1,10,discrete=True)'

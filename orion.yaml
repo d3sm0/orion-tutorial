@@ -2,7 +2,6 @@ storage:
   database:
     type: 'ephemeraldb'
 algorithms:
-  hyperband:
+  random:
     seed: 1
-    repetitions: 10
 working_dir: "./tmp"
