@@ -53,4 +53,4 @@ export XLA_FLAGS=--xla_gpu_cuda_data_dir=/cvmfs/ai.mila.quebec/apps/x86_64/commo
 
 export ORION_DB_ADDRESS=$HOME/scratch/orion_db.pkl
 export ORION_DB_TYPE=PickledDB
-srun python "$ENTRYPOINT" --experiment_id $HASH_COMMIT
+srun python
