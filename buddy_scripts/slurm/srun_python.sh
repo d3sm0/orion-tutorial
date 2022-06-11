@@ -8,8 +8,8 @@
 #SBATCH --nodes=1                # node count
 #SBATCH --mem=32G                # total memory per node (4 GB per cpu-core is default)
 #SBATCH --cpus-per-task=4        # cpu-cores per task (>1 if multi-threaded tasks)
-#SBATCH --ntasks-per-node=2      # total number of tasks per node
-#SBATCH --gres=gpu:2             # number of gpus per node
+#SBATCH --ntasks-per-node=1      # total number of tasks per node
+#SBATCH --gres=gpu:1             # number of gpus per node
 
 export WORLD_SIZE=$(($SLURM_NNODES * $SLURM_TASKS_PER_NODE))
 echo "N_NODES="$SLURM_NNODES
@@ -26,4 +26,4 @@ source $HOME/venv/bin/activate
 
 export NCCL_DEBUG=INFO
 export NCCL_SOCKET_IFNAME="eth0,en,eth,em,bond"
-srun python -O -u $1
+python -O -u $1 $2
