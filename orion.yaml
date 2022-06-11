@@ -1,6 +1,7 @@
 storage:
   database:
-    type: 'ephemeraldb'
+    type: 'pickleddb'
+    host: '~/scratch/orion_pickle.db'
 algorithms:
   random:
     seed: 1

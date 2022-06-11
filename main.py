@@ -16,7 +16,7 @@ def train(writer):
 
 def main():
     experiment_buddy.register_defaults(vars(config))
-    writer = experiment_buddy.deploy(host="")
+    writer = experiment_buddy.deploy(host="mila", sweep_definition="sweep.yaml")
     train(writer)
 
 
